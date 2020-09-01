@@ -16,40 +16,21 @@ class FromComponent extends Component {
         }
     }
 
-    // change state of firstname
-    ChangeFirstName = (e) => {
+    // change state of form fields
+    // StateChangeHandler = (e) => {
+    //     const { name, value } = e.target
+    //     this.setState({
+    //         [name]: value
+    //     })
+    // }
+
+    StateChangeHandler = (event) => {
+        const { name, value } = event.target
         this.setState({
-            firstName: e.target.value
+            [name]: value
         })
     }
 
-    // change state of lastname
-    ChangeLastName = (e) => {
-        this.setState({
-            lastName: e.target.value
-        })
-    }
-
-    // change state of email
-    ChangeEmail = (e) => {
-        this.setState({
-            email: e.target.value
-        })
-    }
-
-    // change state of age
-    ChangeAge = (e) => {
-        this.setState({
-            age: e.target.value
-        })
-    }
-
-    // change state of about section
-    ChangeAbout = (e) => {
-        this.setState({
-            about: e.target.value
-        })
-    }
 
     // reset form function
     clearStates = () => {
@@ -77,7 +58,7 @@ class FromComponent extends Component {
 
 
     render() {
-        const disabledCondition = this.state.firstName === '' || this.state.lastName === '' || this.state.age === '' || this.state.email === '' || this.state.about === ''
+        // const disabledCondition = this.state.firstName === '' || this.state.lastName === '' || this.state.age === '' || this.state.email === '' || this.state.about === ''
 
         return (
             <div className="container">
@@ -85,26 +66,26 @@ class FromComponent extends Component {
                     <h1 className="App mt-3">React Form Handling</h1>
                     <div className="row mt-5">
                         <div className="col-md-6">
-                            <input type="text" required onChange={this.ChangeFirstName} placeholder="First Name e.g Aman" value={this.state.firstName} className="form-control" />
+                            <input type="text" name="firstName" required onChange={this.StateChangeHandler} placeholder="First Name e.g Aman" value={this.state.value} className="form-control" />
                         </div>
                         <div className="col-md-6">
-                            <input type="text" required onChange={this.ChangeLastName} placeholder="Last Name e.g Sultan" value={this.state.lastName} className="form-control" />
+                            <input type="text" name="lastName" required onChange={this.StateChangeHandler} placeholder="Last Name e.g Sultan" value={this.state.value} className="form-control" />
                         </div>
                     </div>
                     <div className="row mt-4">
                         <div className="col-md-6">
-                            <input type="email" required onChange={this.ChangeEmail} placeholder="Email e.g Johndeo@gmail.com" value={this.state.email} className="form-control" />
+                            <input type="email" name="email" required onChange={this.StateChangeHandler} placeholder="Email e.g Johndeo@gmail.com" value={this.state.value} className="form-control" />
                         </div>
                         <div className="col-md-6">
-                            <input type="number" required onChange={this.ChangeAge} min="0" placeholder="Age e.g 25" value={this.state.age} className="form-control" />
+                            <input type="number" name="age" required onChange={this.StateChangeHandler} min="0" placeholder="Age e.g 25" value={this.state.value} className="form-control" />
                         </div>
                     </div>
                     <div className="row mt-3">
                         <div className="col-md-12">
-                            <textarea rows="4" required onChange={this.ChangeAbout} placeholder="About Yourself" value={this.state.about} className="form-control"></textarea>
+                            <textarea rows="4" name="about" required onChange={this.StateChangeHandler} placeholder="About Yourself" value={this.state.value} className="form-control"></textarea>
                         </div>
                     </div>
-                    <button disabled={disabledCondition} className="btn btn-primary submit-btn float-right mt-3">Submit Form</button>
+                    <button className="btn btn-primary submit-btn float-right mt-3">Submit Form</button>
                 </form>
             </div>
         )
