@@ -37,18 +37,25 @@ class FromComponent extends Component {
         this.setState({
             firstName: e.target.value
         })
-        if (this.state.firstName === "") {
+    }
+
+    keyUp = () => {
+        if (this.state.firstName == "") {
             this.setState({
                 message: "Invalid! Please Fill the field"
             })
         }
+        console.log('keyup', this.state.firstName)
+        this.keyDown()
+    }
+
+    keyDown = () => {
         if (this.state.firstName !== "") {
             this.setState({
                 message: ""
             })
         }
-
-        console.log(this.state.firstName)
+        console.log('keydown', this.state.firstName)
     }
 
     // reset form function
@@ -64,12 +71,12 @@ class FromComponent extends Component {
 
     // showing form data
     formSubmission = (e) => {
-        if (this.state.firstName === "") {
+        if (this.state.firstName < 1) {
             this.setState({
                 message: "Invalid! Please Fill the field"
             })
         }
-        if (this.state.firstName !== "") {
+        if (this.state.firstName > 0) {
             this.setState({
                 message: ""
             })
@@ -96,7 +103,7 @@ class FromComponent extends Component {
                     <h1 className="App mt-3">React Form Handling</h1>
                     <div className="row mt-5">
                         <div className="col-md-6">
-                            <input type="text" name="firstName" onChange={this.changeName} placeholder="First Name e.g Aman" value={this.state.value} className="form-control" />
+                            <input type="text" name="firstName" onKeyUp={this.keyUp} onChange={this.changeName} placeholder="First Name e.g Aman" value={this.state.value} className="form-control" />
                             <small style={{ color: "red" }}>{message}</small>
                         </div>
                         <div className="col-md-6">
